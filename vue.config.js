@@ -69,7 +69,7 @@ module.exports = defineConfig({
           {
             provider: "github",
             owner: "dexcpro",
-            repo: "Telegram_Game_bot",
+            repo: "mix_tool",
           },
         ],
       },
