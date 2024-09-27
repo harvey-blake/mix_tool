@@ -1,4 +1,4 @@
 {
   "version": "1.1.4",
-  "illustrate": [ "修复新用户无法添加账户的BUG"]
+  "illustrate": ["修复新用户无法添加账户的BUG"]
 }
