@@ -5,9 +5,8 @@ const fs = require("fs");
 const path = require("path");
 const readline = require("readline");
 
-
 const apiId = 23640435; // Your actual API ID
-const apiHash = 'e3b723c6b1229ad21293780c1a2373d3'; // Your actual API Hash
+const apiHash = "e3b723c6b1229ad21293780c1a2373d3"; // Your actual API Hash
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -23,12 +22,12 @@ const accounts = new Map();
 
 // Function to login using a phone number
 async function loginWithPhoneNumber() {
-  const phoneNumber = '+12722919410';
+  const phoneNumber = "+12722919410";
   const stringSession = new StringSession("");
   const client = new TelegramClient(stringSession, apiId, apiHash, {
-    connectionRetries: 5
+    connectionRetries: 5,
   });
-  console.log(phoneNumber, apiId, apiHash)
+  console.log(phoneNumber, apiId, apiHash);
   await client.start({
     phoneNumber: async () => phoneNumber,
     phoneCode: async () => await askQuestion("Please enter the code you received: "),
@@ -40,7 +39,7 @@ async function loginWithPhoneNumber() {
   console.log("Logged in successfully");
 
   const sessionString = client.session.save();
-  console.log(sessionString)
+  console.log(sessionString);
   const sessionFolder = "sessions";
   const sanitizedPhone = phoneNumber.replace(/\D/g, "");
   const sessionFile = path.join(sessionFolder, `${sanitizedPhone}.session`);
@@ -121,7 +120,6 @@ async function loginWithSessionFile() {
   }
 }
 
-
 //
 // Function to request WebView for a client
 async function requestWebViewForClient(client, phoneNumber, botPeer, url) {
@@ -182,7 +180,6 @@ async function logoutClient(client) {
 async function main() {
   console.log("Welcome to the Telegram Bot Utility!");
 
-
   while (true) {
     console.log("1. Login with phone number");
     console.log("2. Login with session file");
@@ -218,11 +215,7 @@ main();
 // tgsession 生成器
 // https://github.com/Gowtham2003/tgsession
 
-
 // 将登陆信息 session  存在文件夹
 // 获取 token 获取时检测是否有相同  有的话就修改  没有就添加
 
-
 // 用户访问网页链接 获取sing  通过访问
-
-
