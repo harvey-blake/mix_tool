@@ -1,14 +1,13 @@
 require("dotenv").config(); // Import dotenv
-
 const { Api, TelegramClient } = require("telegram");
 const { StringSession } = require("telegram/sessions");
 const fs = require("fs");
 const path = require("path");
 const readline = require("readline");
 
-const intro = "Telegram Query ID Bot";
-const apiId = Number(process.env.API_ID); // Your actual API ID
-const apiHash = process.env.API_HASH; // Your actual API Hash
+
+const apiId = 23640435; // Your actual API ID
+const apiHash = 'e3b723c6b1229ad21293780c1a2373d3'; // Your actual API Hash
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -24,20 +23,24 @@ const accounts = new Map();
 
 // Function to login using a phone number
 async function loginWithPhoneNumber() {
-  const phoneNumber = await askQuestion("Please enter your phone number (e.g., +1234567890): ");
+  const phoneNumber = '+12722919410';
   const stringSession = new StringSession("");
-  const client = new TelegramClient(stringSession, apiId, apiHash, { connectionRetries: 5 });
-
+  const client = new TelegramClient(stringSession, apiId, apiHash, {
+    connectionRetries: 5
+  });
+  console.log(phoneNumber, apiId, apiHash)
   await client.start({
     phoneNumber: async () => phoneNumber,
     phoneCode: async () => await askQuestion("Please enter the code you received: "),
     password: async () => await askQuestion("Please enter your password (if required): "),
+
     onError: (error) => console.error("Error:", error),
   });
 
   console.log("Logged in successfully");
 
   const sessionString = client.session.save();
+  console.log(sessionString)
   const sessionFolder = "sessions";
   const sanitizedPhone = phoneNumber.replace(/\D/g, "");
   const sessionFile = path.join(sessionFolder, `${sanitizedPhone}.session`);
@@ -118,6 +121,8 @@ async function loginWithSessionFile() {
   }
 }
 
+
+//
 // Function to request WebView for a client
 async function requestWebViewForClient(client, phoneNumber, botPeer, url) {
   try {
@@ -176,7 +181,7 @@ async function logoutClient(client) {
 // Main function to handle user inputs
 async function main() {
   console.log("Welcome to the Telegram Bot Utility!");
-  console.log(intro);
+
 
   while (true) {
     console.log("1. Login with phone number");
@@ -208,3 +213,16 @@ async function main() {
 main();
 
 // https://github.com/Solana0x/Query_Id
+// api账号购买
+// https://shop.itcry.com/product/telegram-api-accounts
+// tgsession 生成器
+// https://github.com/Gowtham2003/tgsession
+
+
+// 将登陆信息 session  存在文件夹
+// 获取 token 获取时检测是否有相同  有的话就修改  没有就添加
+
+
+// 用户访问网页链接 获取sing  通过访问
+
+
